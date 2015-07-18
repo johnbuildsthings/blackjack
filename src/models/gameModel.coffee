@@ -26,7 +26,6 @@ class window.GameModel extends Backbone.Model
     if @bust(@get('playerHand').scores())
       # @get('dealerHand').win()
       @trigger('dealerWin', @)
-      console.log('dealer wins')
 
   dealerTurn: ->
     @get('dealerHand').at(0).flip()

@@ -14,6 +14,7 @@ class window.Hand extends Backbone.Collection
     if (!@get('isDealer'))
       @trigger('playerHit', @)
 
+
   # TODO: handle stand() call from AppView
   stand: ->
     console.log "player stand"
