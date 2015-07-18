@@ -12,5 +12,6 @@ class window.HandView extends Backbone.View
     @$el.html @template @collection
     @$el.append @collection.map (card) ->
       new CardView(model: card).$el
+    # isWin = @collection.get('didWin') ? 'Winner!' : ''
     @$('.score').text @collection.scores()[0]
 

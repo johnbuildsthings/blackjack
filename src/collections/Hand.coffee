@@ -3,8 +3,23 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
 
+  defaults:
+    { didWin : false }
+
   hit: ->
     @add(@deck.pop())
+    if (!@get('isDealer'))
+      @trigger('playerHit', @)
+
+  # TODO: handle stand() call from AppView
+  stand: ->
+    console.log "player stand"
+    @trigger('stand', @)
+
+  # win will be called on the winning hand at the end of a game
+  # to trigger an update in the HandView
+  win: ->
+    @set('didWin', true)
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1

@@ -6,3 +6,9 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
 
+    @set 'game', game = new GameModel({playerHand: @get('playerHand'), dealerHand: @get("dealerHand")})
+
+
+    @get('playerHand').on('playerHit', -> 
+      @get('game').playerTurn()
+    @)
