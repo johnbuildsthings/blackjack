@@ -1,5 +1,18 @@
+body{
+  background-image: url(../img/cardTableBackground.jpg);
+  /*color: #A52A2A;*/
+  /*color: #8B0000;*/
+  color: #BB0022;
+}
+h1, h2{
+  border:0;
+  margin:0;
+  padding:0;
+}
+h1{
+  text-align: center;
+}
 .card {
-  background-color: black;
   float: left;
   border: solid 1px black;
   width: 120px;
@@ -14,4 +27,41 @@
 
 .hand {
   overflow: auto;
+}
+
+.textbox, .titleBox{
+  margin:auto;
+  width:200px;
+  height:30px;
+  border-radius:20px;
+  background-color: #e0e0e0;
+  border:3px double;
+}
+.titleBox{
+  margin:auto;
+  width:300px;
+  border:5px double black;
+}
+
+.parent{
+  width:100%;
+  text-align:center;
+}
+
+.player-hand-container, .dealer-hand-container, .button-container{
+  /*text-align:center;*/
+  padding: 20px;
+  display: inline-block;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+button{
+  width:100px;
+  height:20px;
+  font-size: smaller;
+  border-radius: 20px;
 }
