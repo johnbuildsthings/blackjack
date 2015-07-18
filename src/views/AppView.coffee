@@ -15,6 +15,7 @@ class window.AppView extends Backbone.View
         @model.get('playerHand').stand()
     'click .newHand-button': ->
       @model.newHand()
+      @render()
 
   initialize: ->
     @model.on 'change:winner', => 

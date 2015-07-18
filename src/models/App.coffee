@@ -6,6 +6,15 @@ class window.App extends Backbone.Model
     @newHand()
 
 
+  # Reset all most of our game state to play another hand
+  newHand: ->
+    @set 'playerHand', @get('deck').dealPlayer()
+    @set 'dealerHand', @get('deck').dealDealer()
+    @set 'winner', 'none'
+    @set 'stillPlaying', true
+
+    @set 'game', game = new GameModel({playerHand: @get('playerHand'), dealerHand: @get("dealerHand")})
+
     @get('playerHand').on('playerHit', -> 
       @get('game').playerTurn()
     @)
@@ -23,13 +32,3 @@ class window.App extends Backbone.Model
       @set('winner', 'player')
       @set('stillPlaying', false)
     @)
-
-  # Reset all most of our game state to play another hand
-  newHand: ->
-    @set 'playerHand', @get('deck').dealPlayer()
-    @set 'dealerHand', @get('deck').dealDealer()
-    @set 'winner', 'none'
-    @set 'stillPlaying', true
-
-    @set 'game', game = new GameModel({playerHand: @get('playerHand'), dealerHand: @get("dealerHand")})
-
