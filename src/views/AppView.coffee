@@ -1,6 +1,7 @@
 class window.AppView extends Backbone.View
   template: _.template '
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
+    <button class="newHand-button">New Hand</button>
     <div class="player-hand-container"></div>
     <div class="dealer-hand-container"></div>
   '
@@ -12,6 +13,8 @@ class window.AppView extends Backbone.View
     'click .stand-button': -> 
       if (@model.get('stillPlaying'))
         @model.get('playerHand').stand()
+    'click .newHand-button': ->
+      @model.newHand()
 
   initialize: ->
     @model.on 'change:winner', => 
