@@ -6,10 +6,19 @@ class window.AppView extends Backbone.View
   '
 
   events:
-    'click .hit-button': -> @model.get('playerHand').hit()
-    'click .stand-button': -> @model.get('playerHand').stand()
+    'click .hit-button': -> 
+      if (@model.get('stillPlaying'))
+        @model.get('playerHand').hit()
+    'click .stand-button': -> 
+      if (@model.get('stillPlaying'))
+        @model.get('playerHand').stand()
 
   initialize: ->
+    @model.on 'change:winner', => 
+      winner = @model.get('winner')
+      if (winner != 'none')
+        alert("#{winner} won")
+
     @render()
 
   render: ->
@@ -18,3 +27,4 @@ class window.AppView extends Backbone.View
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el
     @$('.dealer-hand-container').html new HandView(collection: @model.get 'dealerHand').el
 
+# TODO: handle a 'change' event from the App Model.

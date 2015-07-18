@@ -18,20 +18,23 @@ class window.GameModel extends Backbone.Model
       @dealerTurn()
       @endOfGame()
 
-  bust: (score) ->
-    (score[0] > 21) ? true : false
+  bust: (scores) ->
+    (scores[0] > 21) ? true : false
 
   playerTurn: ->
     console.log('playerTurn')
     if @bust(@get('playerHand').scores())
-      @get('dealerHand').win()
+      # @get('dealerHand').win()
+      @trigger('dealerWin', @)
       console.log('dealer wins')
 
   dealerTurn: ->
     @get('dealerHand').at(0).flip()
-    score = @get('dealerHand').scores()
-    while score[0] < 17
+    scores = @get('dealerHand').scores()
+    while scores[0] < 17
       @get('dealerHand').hit()
+      scores = @get('dealerHand').scores()
+    @endOfGame()
 
   bestScore: (scores) ->
     if (scores[1] > scores[0] && scores[1] < 22)
@@ -44,7 +47,7 @@ class window.GameModel extends Backbone.Model
     playerScore = @bestScore (@get('playerHand').scores())
     dealerScore = @bestScore (@get('dealerHand').scores())
     if(@bust(@get('dealerHand').scores()) || playerScore > dealerScore)
-      @get('playerHand').win()
+      @trigger('playerWin', @)
     else 
-      @get('dealerHand').win()
+      @trigger('dealerWin', @)
 

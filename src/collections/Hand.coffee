@@ -1,10 +1,13 @@
 class window.Hand extends Backbone.Collection
   model: Card
 
-  initialize: (array, @deck, @isDealer) ->
+  initialize: (array, @deck, @isDealer, @didWin) ->
+    # @set('didWin', false)
 
-  defaults:
-    { didWin : false }
+  # defaults:
+  #   { 'didWin' : false }
+
+  # didWin : false
 
   hit: ->
     @add(@deck.pop())
